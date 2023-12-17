@@ -59,7 +59,7 @@ public final class CosmicMeteors extends SimplePlugin {
         return false;
     }
 
-    public FallingBlock spawnMeteor(Meteor met, Location spawn, Location destination) {
+    public FallingBlock spawnMeteor(Meteor met, Location spawn, Location destination, boolean isReplacement) {
         MeteorType meteorInfo = met.getType();
         Material material = meteorInfo.getMaterial().toMaterial();
 
@@ -86,7 +86,7 @@ public final class CosmicMeteors extends SimplePlugin {
             block.setVelocity(vel);
         }, 1, 1));
 
-        if (displacement.lengthSquared() == 0) // Stationary landed meteor
+        if (isReplacement) // Stationary landed meteor
             return block;
 
         String spawnAnnouncement = meteorInfo.getSpawnAnnouncement();
@@ -116,6 +116,10 @@ public final class CosmicMeteors extends SimplePlugin {
             }
         }, particles.getInteger("Delay", 0), particles.getInteger("Interval", 5)));
         return block;
+    }
+
+    public void spawnMeteor(Meteor met, Location spawn, Location destination) {
+        spawnMeteor(met, spawn, destination, false);
     }
 
     public void spawnMeteor(String meteorType, Location spawn, Location destination) {
@@ -153,7 +157,7 @@ public final class CosmicMeteors extends SimplePlugin {
         Location loc = ent.getLocation();
         Objects.requireNonNull(loc.getWorld()).createExplosion(loc, met.getType().getExplosionPower(),
                 false, false, ent);
-        final Entity newEnt = spawnMeteor(met, loc, loc); // Spawn a stationary replacement meteor
+        final Entity newEnt = spawnMeteor(met, loc, loc, true); // Spawn a stationary replacement meteor
 
         Integer despawnTicks = met.getType().getDespawnTicks();
         if (despawnTicks != null) {
