@@ -1,0 +1,6 @@
+# spawn is the default location group of meteor spawn points
+# destination is the default location group of meteor landing points
+
+spawn: [ ]
+
+destination: [ ]
