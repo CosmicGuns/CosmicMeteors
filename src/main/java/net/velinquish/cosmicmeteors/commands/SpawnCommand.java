@@ -1,6 +1,7 @@
 package net.velinquish.cosmicmeteors.commands;
 
 import net.velinquish.cosmicmeteors.CosmicMeteors;
+import net.velinquish.cosmicmeteors.models.MeteorType;
 import net.velinquish.cosmicmeteors.settings.Settings;
 import org.mineacademy.fo.command.SimpleSubCommand;
 import org.mineacademy.fo.settings.Lang;
@@ -23,12 +24,17 @@ public class SpawnCommand extends SimpleSubCommand {
         try {
             if (args.length == 0)
                 plugin.spawnMeteor();
-            else if (args.length == 1)
-                plugin.spawnMeteor(args[0]);
-            else if (args.length == 2)
-                returnTell(getUsage());
-            else
-                plugin.spawnMeteor(args[0], args[1], args[2]);
+            else {
+                MeteorType meteorInfo = Settings.MeteorTypes.get(args[0]);
+                if (meteorInfo == null)
+                    tellError(Lang.of("Commands.Spawn.Invalid_Type", args[0], Settings.MeteorTypes.getTypeNames()));
+                else if (args.length == 1)
+                    plugin.spawnMeteor(args[0]);
+                else if (args.length == 2)
+                    returnTell(getUsage());
+                else
+                    plugin.spawnMeteor(args[0], args[1], args[2]);
+            }
         } catch (IndexOutOfBoundsException e) { // No locations set
             tellError(Lang.of("Commands.Spawn.Locations_Empty"));
         }

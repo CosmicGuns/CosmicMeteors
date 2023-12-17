@@ -129,8 +129,6 @@ public final class CosmicMeteors extends SimplePlugin {
 
     public void spawnMeteor(String meteorType, String spawnLocationGroup, String destinationLocationGroup) {
         MeteorType meteorInfo = Settings.MeteorTypes.get(meteorType);
-        if (meteorInfo == null)
-            throw new IllegalArgumentException("Invalid meteor type: " + meteorType);
         Location spawn = locations.get(spawnLocationGroup);
         Location destination = locations.get(destinationLocationGroup);
         Double height = meteorInfo.getSpawnHeight();

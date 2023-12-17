@@ -30,6 +30,7 @@
 Commands:
   Spawn:
     Locations_Empty: "One of the location groups is empty. Use '/meteor set` to add some locations."
+    Invalid_Type: "Invalid meteor type '{0}'. Available: {1}."
   Set:
     Success: "Successfully set comet {0} at {1}."
   # true = https://i.imgur.com/us88BCT.png
