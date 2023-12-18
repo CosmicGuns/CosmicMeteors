@@ -6,41 +6,41 @@ import org.jetbrains.annotations.Nullable;
 import org.mineacademy.fo.collection.SerializedMap;
 import org.mineacademy.fo.remain.CompMaterial;
 
+@Getter
 public class MeteorType {
-    @Getter
     private final CompMaterial material;
 
-    @Getter
     private final String defaultSpawns;
 
-    @Getter
     private final String defaultDestinations;
 
-    @Getter
     private final @Nullable Double spawnHeight;
 
-    @Getter
     private final @Nullable Integer despawnTicks;
 
-    @Getter
     private final double speed;
 
-    @Getter
+    private final float startRotation; // In degrees
+
+    private final float rotationChange; // In degrees
+
+    private final float scaleX;
+
+    private final float scaleY;
+
+    private final float scaleZ;
+
     private final float explosionPower;
 
-    @Getter
     private final String spawnAnnouncement;
 
-    @Getter
     private final String collectAnnouncement;
 
-    @Getter
     private final String despawnAnnouncement;
 
-    @Getter
     private final String lootTableName;
 
-    @Getter
+
     private SerializedMap particles;
 
     @Setter
@@ -53,6 +53,11 @@ public class MeteorType {
         spawnHeight = null;
         despawnTicks = null;
         speed = 0.05;
+        startRotation = 45;
+        rotationChange = 180;
+        scaleX = 1f;
+        scaleY = 1f;
+        scaleZ = 1f;
         explosionPower = 4F;
         spawnAnnouncement = "none";
         collectAnnouncement = "none";
@@ -74,6 +79,11 @@ public class MeteorType {
         else
             despawnTicks = map.getInteger("Despawn_Ticks", defaultMeteor.getDespawnTicks());
         speed = map.getDouble("Speed", defaultMeteor.getSpeed());
+        scaleX = map.getFloat("Scale_X", defaultMeteor.getScaleX());
+        scaleY = map.getFloat("Scale_Y", defaultMeteor.getScaleY());
+        scaleZ = map.getFloat("Scale_Z", defaultMeteor.getScaleZ());
+        startRotation = map.getFloat("Rotation_Start", defaultMeteor.getStartRotation());
+        rotationChange = map.getFloat("Rotation_Speed", defaultMeteor.getRotationChange());
         explosionPower = map.getFloat("Explosion_Power", defaultMeteor.getExplosionPower());
         spawnAnnouncement = map.getString("Spawn_Announcement", defaultMeteor.getSpawnAnnouncement());
         collectAnnouncement = map.getString("Collect_Announcement", defaultMeteor.getCollectAnnouncement());

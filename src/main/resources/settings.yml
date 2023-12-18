@@ -27,6 +27,7 @@
 # The "default" type is required and its properties are the default values for all other types.
 # Material: Can be chosen from the following list: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
 # Spawn_Height: Overrides the height at which meteors spawn. Set to 'none' to not override.
+# Rotation_Change: How much the meteor will rotate while falling, in degrees. Will not spin more than 180 degrees.
 # Despawn_Ticks: How many ticks after landing should the meteor despawn? Set to -1 to never despawn. 20 ticks = 1 sec.
 # -------------------------------------------------------------------------------------------------
 Meteor_Types:
@@ -35,9 +36,14 @@ Meteor_Types:
     Default_Spawns: "spawn"
     Default_Destinations: "destination"
     Spawn_Height: 231
-    Speed: 3.8
+    Speed: 1.5
+    Start_Rotation: 45
+    Rotation_Change: 180
     Explosion_Power: 4
     Despawn_Ticks: 600
+    Scale_X: 2
+    Scale_Y: 2
+    Scale_Z: 2
     Particles:
       Enabled: true
       Delay: 5
@@ -53,7 +59,7 @@ Meteor_Types:
           Speed: 0.3
           Spread: [ 0.05, 0.1, 0.05 ]
           Force_Visibility: true
-    #Loot_Table: "cg:meteor"
+    Loot_Table: "minecraft:chests/shipwreck_treasure"
     Spawn_Announcement: "{prefix}&cA meteor was sighted!"
     Collect_Announcement: "{prefix}&c{player} &7got the meteor!"
     Despawn_Announcement: "{prefix}&cNobody got the meteor. :("
