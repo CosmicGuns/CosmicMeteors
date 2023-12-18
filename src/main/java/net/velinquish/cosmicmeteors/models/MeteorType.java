@@ -65,7 +65,7 @@ public class MeteorType {
         material = map.getMaterial("Material", defaultMeteor.getMaterial());
         defaultSpawns = map.getString("Default_Spawns", defaultMeteor.getDefaultSpawns());
         defaultDestinations = map.getString("Default_Destinations", defaultMeteor.getDefaultDestinations());
-        if (map.containsKey("Despawn_Ticks") && map.getString("Spawn_Height").equals("none"))
+        if (map.containsKey("Spawn_Height") && map.getString("Spawn_Height").equals("none"))
             spawnHeight = null;
         else
             spawnHeight = map.getDouble("Spawn_Height", defaultMeteor.getSpawnHeight());
